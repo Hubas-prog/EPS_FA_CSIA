@@ -24,7 +24,9 @@ Nlabiso<-expression(paste(delta^{15}, "N (\u2030)"))
 # FIGURE 2
 #####################
 
-EPS.data<-read.csv("EPS_SI_ratio.csv",sep=";",h=T)
+EPS.data<-read.csv("https://zenodo.org/record/7351531/files/EPS_SI_ratio.csv?download=1",
+                   sep=";",
+                   h=T)
 
 d13CNat<-ggplot(EPS.data,aes(y= d13C,x= groups,col=type)) +
   geom_boxplot()+ 
@@ -96,7 +98,9 @@ res.waer4
 # FIGURE 3
 #####################
 
-FA.data<-read.csv("Fatty_acids_SI_ratio.csv",sep=";",h=T)
+FA.data<-read.csv("https://zenodo.org/record/7351531/files/Fatty_acids_SI_ratio.csv?download=1",
+                  sep=";",
+                  h=T)
 
 boxFA<-ggplot(FA.data[FA.data$fatty.name!="24:0",],aes(y=d13Ccor,x=family))+
   geom_boxplot(aes(col=family))+
@@ -310,7 +314,8 @@ densities<-plot_grid(density.BFA,
 # FIGURE SF1
 #####################
 
-EPS_colorimetry<-read.csv2("EPS_colorimetry.csv",h=T)
+EPS_colorimetry<-read.csv2("https://zenodo.org/record/7351531/files/EPS_colorimetry.csv?download=1",
+                           h=T)
 
 ggplot(EPS_colorimetry,aes(y=as.numeric(EPS),x= groups,col=type)) +
   geom_boxplot()+
