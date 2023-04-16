@@ -2,9 +2,11 @@ R scripts of the statistical analysis for the article entitled:
 
 # Identification of microbial exopolymer producers in sandy and muddy intertidal sediments by compound-specific isotope analysis
 
-Citation : to be submitted
+Citation : Identification of microbial exopolymer producers in sandy and muddy intertidal sediments by compound-specific isotope analysis
+Cédric Hubas, Julie Gaubert-Boussarie, An-Sofie D’Hondt, Bruno Jesus, Dominique Lamy, Vona Meleder, Antoine Prins, Philippe Rosa, Willem Stock, Koen Sabbe
+bioRxiv 2022.12.02.516908; doi: https://doi.org/10.1101/2022.12.02.516908
 
-Published in : to be added
+Published in : submited to PCI Microbiology
 
 The current deposit corresponds only to the statistical analysis. It gives details about the statistical procedure that was developped for this article. The raw data are available at the following address: https://doi.org/10.5281/zenodo.7351530
 
