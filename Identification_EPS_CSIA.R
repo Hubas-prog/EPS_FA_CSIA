@@ -1,7 +1,7 @@
 #################################
 # Hubas et al.
 # Identification of microbial exopolymer producers in sandy and muddy intertidal sediments by compound-specific isotope analysis
-# Script version: V1.O
+# Script version: V2.O
 #################################
 
 #################################
@@ -70,7 +70,7 @@ plot_grid(Ccontent,d13CNat,Ncontent,d15NNat,labels = c("a","b","c","d"),ncol=2)
 # STATISTICS Fig2
 #####################
 
-# creation of a cross factor
+# creation of a cross factor (to test EPS type x sampling occasion)
 EPS.data$f<-paste(EPS.data$type, EPS.data$groups)
 
 # Van der Waerden test for Fig.2-C.content
@@ -78,21 +78,49 @@ res.waer1<-waerden.test(EPS.data$C.content,
                         factor(EPS.data$f),
                         group = TRUE)
 res.waer1
+
 # Van der Waerden test for Fig.2-N.content
 res.waer2<-waerden.test(EPS.data$N.content,
                         factor(EPS.data$f),
                         group = TRUE)
 res.waer2
+
 # Van der Waerden test for Fig.2-d13C
 res.waer3<-waerden.test(EPS.data$d13C,
                         factor(EPS.data$f),
                         group = TRUE)
 res.waer3
+
 # Van der Waerden test for Fig.2-d15N
 res.waer4<-waerden.test(EPS.data$d15N,
                         factor(EPS.data$f),
                         group = TRUE)
 res.waer4
+
+# creation of a cross factor (to test EPS type x sediment type) : The statistical analysis for this cross factor is not included in the manuscript. However, we provide the following information for reference purposes.
+EPS.data$f2<-paste(EPS.data$type, EPS.data$site)
+
+# Van der Waerden test for Fig.2-C.content
+res.waer1.f2<-waerden.test(EPS.data$C.content,
+                           factor(EPS.data$f2),
+                           group = TRUE)
+res.waer1.f2
+
+# Van der Waerden test for Fig.2-N.content
+res.waer2.f2<-waerden.test(EPS.data$N.content,
+                           factor(EPS.data$f2),
+                           group = TRUE)
+res.waer2.f2
+# Van der Waerden test for Fig.2-d13C
+res.waer3.f2<-waerden.test(EPS.data$d13C,
+                           factor(EPS.data$f2),
+                           group = TRUE)
+res.waer3.f2
+# Van der Waerden test for Fig.2-d15N
+res.waer4.f2<-waerden.test(EPS.data$d15N,
+                           factor(EPS.data$f2),
+                           group = TRUE)
+res.waer4.f2
 
 #####################
 # FIGURE 3
@@ -326,3 +354,4 @@ ggplot(EPS_colorimetry,aes(y=as.numeric(EPS),x= groups,col=type)) +
         axis.text.x=element_text(angle=90))+
   labs(col="EPS type")+
   scale_color_manual(values=c("#e76f51","#264653"))
+
