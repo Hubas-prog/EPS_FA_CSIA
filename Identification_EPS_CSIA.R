@@ -97,7 +97,7 @@ res.waer4<-waerden.test(EPS.data$d15N,
                         group = TRUE)
 res.waer4
 
-# creation of a cross factor (to test EPS type x sediment type) : The statistical analysis for this cross factor is not included in the manuscript. However, we provide the following information for reference purposes.
+# creation of a cross factor (to test EPS type x sediment type)
 EPS.data$f2<-paste(EPS.data$type, EPS.data$site)
 
 # Van der Waerden test for Fig.2-C.content
