@@ -21,6 +21,59 @@ Clabiso<- expression(paste(delta^{13}, "C (\u2030)"))
 Nlabiso<-expression(paste(delta^{15}, "N (\u2030)"))
 
 #####################
+# M&M
+#####################
+
+CHLA<-read.csv("chla.csv",
+               sep=";",
+               h=T)
+BRA<-read.csv("bra.csv",
+              sep=";",
+              h=T)
+
+CHLA.plot<-ggplot(CHLA,aes(y= CHLA,x= site)) +
+  geom_boxplot()+
+  ylab(expression(paste("Chlorophyll a (µg.g sediment dry weight (SDW",")"^-1,")")))+
+  theme_bw(base_size = 14)+
+  theme(axis.title.x=element_blank(),
+        legend.position="none",
+        axis.text.x=element_text(angle=90))
+
+BRA.plot<-ggplot(BRA,aes(y= BRA,x= site)) +
+  geom_boxplot()+
+  ylab(expression(paste("Branched fatty acids (% of total)")))+
+  theme_bw(base_size = 14)+
+  theme(axis.title.x=element_blank(),
+        legend.position="none",
+        axis.text.x=element_text(angle=90))
+
+Cratio.plot<-ggplot(BRA,aes(y= C16ratio,x= site)) +
+  geom_boxplot()+
+  ylab(expression(paste("16:0/16:1w7 ratio")))+
+  theme_bw(base_size = 14)+
+  theme(axis.title.x=element_blank(),
+        legend.position="none",
+        axis.text.x=element_text(angle=90))
+
+plot_grid(Cratio.plot,CHLA.plot,BRA.plot,labels = c("a","b","c"),ncol=3)
+
+#####################
+# STATISTICS M&M
+#####################
+
+tapply(BRA$BRA,BRA$site,shapiro.test)
+var.test(BRA$BRA~BRA$site)
+wilcox.test(BRA$BRA~BRA$site)
+
+tapply(BRA$C16ratio,BRA$site,shapiro.test)
+var.test(BRA$C16ratio~BRA$site)
+wilcox.test(BRA$C16ratio~BRA$site)
+
+tapply(CHLA$CHLA,CHLA$site,shapiro.test)
+var.test(CHLA$CHLA~CHLA$site)
+t.test(CHLA$CHLA~CHLA$site,var.equal=F)
+
+#####################
 # FIGURE 2
 #####################
 
@@ -337,7 +390,7 @@ densities<-plot_grid(density.BFA,
                      ncol=1,
                      align = "v",
                      axis="r")
-
+densities
 #####################
 # FIGURE SF1
 #####################
@@ -354,4 +407,5 @@ ggplot(EPS_colorimetry,aes(y=as.numeric(EPS),x= groups,col=type)) +
         axis.text.x=element_text(angle=90))+
   labs(col="EPS type")+
   scale_color_manual(values=c("#e76f51","#264653"))
+
 
