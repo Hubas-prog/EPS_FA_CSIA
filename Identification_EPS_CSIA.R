@@ -24,10 +24,10 @@ Nlabiso<-expression(paste(delta^{15}, "N (\u2030)"))
 # M&M
 #####################
 
-CHLA<-read.csv("chla.csv",
+CHLA<-read.csv("https://zenodo.org/record/8116986/files/chla.csv?download=1",
                sep=";",
                h=T)
-BRA<-read.csv("bra.csv",
+BRA<-read.csv("https://zenodo.org/record/8116986/files/bra.csv?download=1",
               sep=";",
               h=T)
 
