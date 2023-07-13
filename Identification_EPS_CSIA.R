@@ -12,6 +12,7 @@ library(cowplot)
 library(agricolae)
 library(car)
 library(RVAideMemoire)
+library(tidyr)
 
 #################################
 # Aesthetics
@@ -21,7 +22,7 @@ Clabiso<- expression(paste(delta^{13}, "C (\u2030)"))
 Nlabiso<-expression(paste(delta^{15}, "N (\u2030)"))
 
 #####################
-# M&M
+# Site comparison
 #####################
 
 CHLA<-read.csv("https://zenodo.org/record/8116986/files/chla.csv?download=1",
@@ -31,43 +32,62 @@ BRA<-read.csv("https://zenodo.org/record/8116986/files/bra.csv?download=1",
               sep=";",
               h=T)
 
-CHLA.plot<-ggplot(CHLA,aes(y= CHLA,x= site)) +
+CHLA.plot<-ggplot(CHLA,aes(y= CHLA,x=site,col=site)) +
   geom_boxplot()+
   ylab(expression(paste("Chlorophyll a (µg.g sediment dry weight (SDW",")"^-1,")")))+
   theme_bw(base_size = 14)+
+  scale_color_manual(values=c("black","grey"))+
   theme(axis.title.x=element_blank(),
         legend.position="none",
         axis.text.x=element_text(angle=90))
 
-BRA.plot<-ggplot(BRA,aes(y= BRA,x= site)) +
+Cratio.plot<-ggplot(BRA,aes(y= C16ratio,x= Site,col=Site)) +
   geom_boxplot()+
-  ylab(expression(paste("Branched fatty acids (% of total)")))+
+  ylab(expression(paste("16:0/16:1n-7 ratio")))+
   theme_bw(base_size = 14)+
+  scale_color_manual(values=c("black","grey"))+
   theme(axis.title.x=element_blank(),
         legend.position="none",
         axis.text.x=element_text(angle=90))
 
-Cratio.plot<-ggplot(BRA,aes(y= C16ratio,x= site)) +
+FA.long<-pivot_longer(BRA[,-6],cols=2:5,names_to = "FA.class",values_to = "percent")
+FA.long$FA.class<-factor(FA.long$FA.class,levels=c("BRA","SFA","MUFA","PUFA"))
+
+FA.site<-ggplot(FA.long,aes(y=percent,x=FA.class,col=Site))+
   geom_boxplot()+
-  ylab(expression(paste("16:0/16:1w7 ratio")))+
+  scale_color_manual(values=c("black","grey"))+
   theme_bw(base_size = 14)+
-  theme(axis.title.x=element_blank(),
-        legend.position="none",
-        axis.text.x=element_text(angle=90))
+  xlab("")+
+  ylab("relative contribution (% of total FA)")
+  labs(col="Site")
 
-plot_grid(Cratio.plot,CHLA.plot,BRA.plot,labels = c("a","b","c"),ncol=3)
+p1<-plot_grid(Cratio.plot,CHLA.plot,labels = c("a","b"),ncol=1)
+plot_grid(p1,FA.site,labels = c("","c"),ncol=2)
+
 
 #####################
 # STATISTICS M&M
 #####################
 
-tapply(BRA$BRA,BRA$site,shapiro.test)
-var.test(BRA$BRA~BRA$site)
-wilcox.test(BRA$BRA~BRA$site)
+tapply(BRA$BRA,BRA$Site,shapiro.test)
+var.test(BRA$BRA~BRA$Site)
+wilcox.test(BRA$BRA~BRA$Site)
 
-tapply(BRA$C16ratio,BRA$site,shapiro.test)
-var.test(BRA$C16ratio~BRA$site)
-wilcox.test(BRA$C16ratio~BRA$site)
+tapply(BRA$SFA,BRA$Site,shapiro.test)
+var.test(BRA$SFA~BRA$Site)
+wilcox.test(BRA$SFA~BRA$Site)
+
+tapply(BRA$MUFA,BRA$Site,shapiro.test)
+var.test(BRA$MUFA~BRA$Site)
+wilcox.test(BRA$MUFA~BRA$Site)
+
+tapply(BRA$PUFA,BRA$Site,shapiro.test)
+var.test(BRA$PUFA~BRA$Site)
+t.test(BRA$PUFA~BRA$Site,var.equal=T)
+
+tapply(BRA$C16ratio,BRA$Site,shapiro.test)
+var.test(BRA$C16ratio~BRA$Site)
+wilcox.test(BRA$C16ratio~BRA$Site)
 
 tapply(CHLA$CHLA,CHLA$site,shapiro.test)
 var.test(CHLA$CHLA~CHLA$site)
