@@ -2,7 +2,7 @@
 
 **Citation:**
 
-*Cédric Hubas, Julie Gaubert-Boussarie, An-Sofie D'Hondt, Bruno Jesus, Dominique Lamy, Vona Meleder, Antoine Prins, Philippe Rosa, Willem Stock, Koen Sabbe* (2023) Identification of microbial exopolymer producers in sandy and muddy intertidal sediments by compound-specific isotope analysis. bioRxiv 2022.12.02.516908, doi: [10.1101/2022.12.02.516908](https://doi.org/10.1101/2022.12.02.516908). For recommendation in PCI Ecology
+*Hubas, Cédric; Gaubert-Boussarie, Julie; D’Hondt, An-Sofie; Jesus, Bruno; Lamy, Dominique; Meleder, Vona; Prins, Antoine; Rosa, Philippe; Stock, Willem; Sabbe, Koen.* Identification of microbial exopolymer producers in sandy and muddy intertidal sediments by compound-specific isotope analysis. Peer Community Journal, Volume 3 (2023), article no. e104. doi : 10.24072/pcjournal.336. https://peercommunityjournal.org/articles/10.24072/pcjournal.336/
 
 
 **Publication Details:**  
