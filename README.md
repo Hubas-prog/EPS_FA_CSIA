@@ -9,7 +9,7 @@
 
 For publication in: PCI Microbiology
 - Release V1.0: First submission : bioRxiv 2022.12.02.516908; doi: [10.1101/2022.12.02.516908](https://doi.org/10.1101/2022.12.02.516908)
-- Release V2.0: Round 2 after minor revision : xxx
+- Release V2.0: Round 2 after minor revision : Peer Community Journal; doi: [10.24072/pcjournal.336](https://peercommunityjournal.org/articles/10.24072/pcjournal.336/)
 
 The current deposit contains the R scripts used for the statistical analysis in the article. These scripts provide details about the statistical procedures developed for the study. The raw data can be accessed at the following URL: https://doi.org/10.5281/zenodo.7351530 (note: this URL will always resolve to the latest version of the dataset)
 
